@@ -1,0 +1,77 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+*.pyd
+*.pyo
+*.pyc
+
+# Virtual environments
+env/
+venv/
+ENV/
+.venv/
+.ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyInstaller
+*.spec
+
+# Coverage / test
+htmlcov/
+.coverage
+.cache
+.tox/
+.nox/
+pytest_cache/
+
+# === Bash/Shell ===
+*.log
+*.out
+*.swp
+
+# === IDEs / Editors ===
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# === OS / Misc ===
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.bak
+*.tmp
+*.orig
+
+# === Secrets / Config ===
+.env
+.env.*
+*.key
+*.pem
+*.crt
+
+# === Git ===
+.gitignore
+.gitattributes
+
+# === Other ===
+*.tar
+*.gz
+*.zip
+*.7z
+*.rar
+
+# === Node.js ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
