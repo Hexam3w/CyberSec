@@ -1,0 +1,69 @@
+# TLS, HTTPS, SSH, and Related Protocols
+
+## TLS (Transport Layer Security)
+
+TLS allows secure communication over an insecure network by encrypting data packets.
+
+- Operates at the **Transport Layer (Layer 4)**.
+- Many modern protocols use TLS, including **HTTPS**, **SMTPS**, **POP3S**, and **IMAPS**.
+- TLS certificates are used to verify the authenticity of a server.
+
+---
+
+## HTTPS (HTTP over TLS)
+
+HTTPS works by:
+
+1. Establishing a TCP 3-way handshake  
+2. Establishing a TLS session  
+3. Communicating using the HTTP protocol
+
+- TLS encrypts all HTTP data.
+- Without the encryption key, the data sent or received cannot be read.
+- Uses a different port than HTTP: **port 443** (HTTPS) instead of **port 80** (HTTP).
+
+---
+
+## SMTPS, POP3S, IMAPS
+
+These are secure versions of email protocols that work similarly to HTTPS:
+
+- They also use **TLS** for encryption.
+- They operate on **different ports** than their insecure counterparts.
+
+---
+
+## SSH (Secure Shell)
+
+SSH was created to improve security when connecting to a server.
+
+### Benefits:
+
+- **Secure Authentication**: Supports password, public key, and two-factor authentication.
+- **Confidentiality**: Provides end-to-end encryption, and alerts users about changes in server keys to prevent man-in-the-middle attacks.
+- **Integrity**: Ensures that the data has not been altered during transmission.
+- **Tunneling**: Can create a secure tunnel to route other protocols, similar to a VPN.
+- **X11 Forwarding**: Allows the use of graphical applications over a network on Unix-like systems.
+
+- **SSH uses port 22**.
+- **Common command**:  
+  ```bash
+  ssh username@hostname
+
+## SFTP (SSH File Transfer Protocol)
+
+- Uses the **SSH** protocol.  
+- Operates on **port 22**.
+
+## FTPS (FTP Secure)
+
+- Uses the **TLS** protocol, similar to HTTPS.  
+- Operates on **port 990**.  
+- Requires a certificate.  
+- Can be tricky to set up behind strict firewalls.
+
+## VPN (Virtual Private Network)
+
+A VPN is a way of connecting computers in geographically distant locations to the same network.
+
+**Example**: Connecting a PC in Branch A to the network in Branch B.
