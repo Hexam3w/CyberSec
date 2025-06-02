@@ -1,0 +1,118 @@
+# DNS 
+
+DNS operates at the **Application Layer (Layer 7)** of the ISO OSI model.
+
+**Ports used:**  
+- UDP 53  
+- TCP 53  
+
+## DNS Records
+
+- **A Record**: Maps a hostname to one or more IPv4 addresses.  
+- **AAAA Record**: Maps a hostname to one or more IPv6 addresses.  
+- **CNAME Record**: Maps an alias hostname to a canonical hostname.  
+- **MX Record**: Specifies the mail server responsible for handling emails for a domain.  
+
+## NSlookup
+
+`nslookup` is used on the command line to display the IP address associated with a domain name.
+
+---
+
+# WHOIS
+
+The `whois` command allows you to view domain ownership information that is legally required to be provided by the domain owner. This may include:
+
+- Name
+- Address
+- Phone number
+- Other relevant information
+
+This data can be hidden using domain privacy services.  
+**Failure to disclose required information may result in the loss of the domain.**
+
+---
+
+# HTTP / HTTPS
+
+Used by browsers to communicate with web servers.
+
+**Ports used:**  
+- TCP 80 (HTTP)  
+- TCP 443 (HTTPS)  
+- Sometimes: 8080, 8443  
+
+## Common HTTP Methods
+
+- **GET**: Retrieves data from the server (e.g., an HTML page or image).  
+- **POST**: Submits new data to the server (e.g., form submission or file upload).  
+- **PUT**: Creates or updates a resource on the server.  
+- **DELETE**: Deletes a specified resource on the server.
+
+---
+
+# FTP (File Transfer Protocol)
+
+FTP is designed for efficient file transfer between client and server.
+
+**Port used:** TCP 21
+
+## Common FTP Commands
+
+- `USER`: Enter the username  
+- `PASS`: Enter the password  
+- `RETR`: Download a file from the FTP server  
+- `STOR`: Upload a file to the FTP server  
+
+---
+
+# SMTP (Simple Mail Transfer Protocol)
+
+SMTP is used to **send** emails and defines how email clients and servers communicate.
+
+**Port used:** TCP 25
+
+## Common SMTP Commands
+
+- `HELO` or `EHLO`: Initiates an SMTP session  
+- `MAIL FROM`: Specifies the sender’s email address  
+- `RCPT TO`: Specifies the recipient’s email address  
+- `DATA`: Indicates that the client will begin sending the message body  
+- `.`: Sent on a line by itself to mark the end of the message  
+
+---
+
+# POP3 (Post Office Protocol version 3)
+
+POP3 is used to **receive** emails. The client uses it to retrieve messages from the mail server.
+
+**Port used:** TCP 110
+
+## Common POP3 Commands
+
+- `USER <username>`: Identifies the user  
+- `PASS <password>`: Provides the user’s password  
+- `STAT`: Shows the number of messages and total size  
+- `LIST`: Lists all messages and their sizes  
+- `RETR <message_number>`: Retrieves a specific message  
+- `DELE <message_number>`: Marks a message for deletion  
+- `QUIT`: Ends the session and applies changes  
+
+---
+
+# IMAP (Internet Message Access Protocol)
+
+IMAP allows email synchronization across multiple devices. Actions like reading or deleting a message are mirrored across all connected clients.
+
+**Port used:** TCP 143
+
+> IMAP generally uses more storage than POP3 since messages are kept on the server.
+
+## Common IMAP Commands
+
+- `LOGIN <username> <password>`: Authenticates the user  
+- `SELECT <mailbox>`: Selects a mailbox (folder) to work with  
+- `FETCH <message_number> <data_item>`: Retrieves message content (e.g., `FETCH 3 BODY[]`)  
+- `MOVE <sequence_set> <mailbox>`: Moves specified messages to another mailbox  
+- `COPY <sequence_set> <mailbox>`: Copies specified messages to another mailbox  
+- `LOGOUT`: Ends the session  
