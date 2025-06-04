@@ -1,14 +1,14 @@
 >TCP Dump<
 
-Is a network traffic capturing tool
+Is a network traffic-capturing tool
 
 tcpdump - This command alone will only tell us if TCPdump is installed
 For it to work effectively we need to tell it where to listen, write, and how to display the packets
 
 >Specify the network internface<
 
-For this we use the command -i INTERFACE
-To have a list of interfaces we can use the command ip address show
+For this, we use the command -i INTERFACE
+To have a list of interfaces we can use the command IP address show
 
 Example -i eth0
 
@@ -24,19 +24,19 @@ To read a file we can use TCPdump with the command -r FILE
 
 >Limit the number of captured Packets<
 
-We can specify a limit number of packets to capture by using -c COUNT command.
-If we dont specific the capture will run indefenitly until we CTRL-C
+We can specify a limited number of packets to capture by using the -c COUNT command.
+If we don't specify the capture will run indefinitely until we CTRL-C
 
 >Dont Resolve IP Addresses and Port Numbers<
-By default TCPdump will resolve IPs and show us friendly domain names.
-We can avoid this so it does not have to do all these DNS lookups by using the -n argument
+By default, TCPdump will resolve IPs and show us friendly domain names.
+We can avoid this so it does not have to do all these DNS lookups by using the -n argument.
 
 Ports will be also resolved (Port 80 will be shown as HTTP) 
-To avoid this we can use -nn to stop both DNS and PORT being resolved
+To avoid this we can use -nn to stop both DNS and PORT from being resolved
 
 >Produce (More) Verbose Output<
 
-To print more details we can use the command -v (TTL, identification, Total Lenght , options)
+To print more details we can use the command -v (TTL, identification, Total length, options)
 There are also the command -vv  and -vvv that will produce even more verbose
 
 Command Summary:
@@ -64,11 +64,11 @@ We can also limit packets by their source or destination using src host ip or ds
 >Filtering by port<
 
 We can use the command PORT number to filter capture to a certain port.
-We can also filter by destination and source using dst src
+We can also filter by destination and source using dst src.
 
 >Filtering by Protocol<
 We can also limit packet capture to a certain protocol.
-for this we use the protocol name. Examples: ip ip6 udp tcp icmp
+For this, we use the protocol name. Examples: ip ip6 udp tcp ICMP
 
 >Logical Operators<
 
@@ -84,8 +84,8 @@ tcpdump src host IP or 	Filters packets by a specific source host
 tcpdump dst host IP 	Filters packets by a specific destination host
 tcpdump port PORT_NUMBER 	Filters packets by port number
 tcpdump src port PORT_NUMBER 	Filters packets by the specified source port number
-tcpdump dst port PORT_NUMBER 	Filters packets by the specified destination port number
-tcpdump PROTOCOL 	Filters packets by protocol; examples include ip, ip6, and icmp
+tcpdump DST port PORT_NUMBER 	Filters packets by the specified destination port number
+tcpdump PROTOCOL 	Filters packets by protocol; examples include ip, ip6, and ICMP
 
 >Advanced Filtering Options
 
@@ -125,7 +125,7 @@ tcpdump "tcp[tcpflags] & (tcp-syn|tcp-ack) != 0"
 
 >Displaying packets<
 
-Helpfull commands:
+Helpful commands:
 
     -q: Quick output; print brief packet information
     -e: Print the link-level header ( we can see the MAC address)
