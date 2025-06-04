@@ -8,7 +8,7 @@ Ideally we want to run Nmap as root so we are not limited
 
 Who is online?
 
-Nmap has many ways to specify its target searchs
+Nmap has many ways to specify its target search
 
 IP range using a - example 192.168.0.1-10
 IP Subnet using / 192.168.0.1/24
@@ -16,7 +16,7 @@ Hostname using example.com
 
 We can use the command -SN to scan and find live devices on the network. It works similar to ping
 
-This command will retrieve the live devices and if in the local network the network cards vendors that can give us precious information to the type of target (Since we can send ARP requests)
+This command will retrieve the live devices and if in the local network the network cards vendors that can give us precious information about the type of target (Since we can send ARP requests)
 
 >Scanning a remote Network<
 
@@ -24,7 +24,7 @@ Since we are more than 1 router away we cannot send ARP requests.
 
 >List Scan<
 
-Command -SL  - we can use this command to tell Nmap to list all the target we want to scan before we scan them so we can confirm them.
+Command -SL  - we can use this command to instruct Nmap to list all the targets we want to scan before scanning them, allowing us to confirm them.
 
 >Port Scanning<
 
@@ -35,21 +35,21 @@ Who is listening?
 We can do a connect scan using the Command -sT
 
 Nmap will try to connect and if the port is open it will do the 3way handshake followed by a disconnect by the target.
-If the port is closed a RST-ACK will be received with no 3way handshake
+If the port is closed an RST-ACK packet will be received with no 3way handshake.
 
 >Syn Scan (Stealth)<
 
 Command -sS
 
 This type of scan will only send the SYN packet and not the ACK packet so it will not establish a connection.
-This is considered a stealth scan since it it lead to less logs.
+This is considered a stealth scan since it leads to fewer logs.
 The conversation should be like this: SYN (Host) -> SYN/ACK (server) -> RST (Host)
 
 >Scanning UDP ports<
 
 Command -sU
 
-We know if a port is closed if we receive a ICMP packet with destination unreachable
+We know if a port is closed if we receive an ICMP packet with a destination unreachable.
 
 >Limiting the Target Ports<
 
@@ -57,22 +57,22 @@ Nmap scans the most common 1000 ports by default.
 
 Commands:
 -F -Fast mode and scans only the 100 most common
--p[range] allows to specify a range of ports to be scanned example: -p10-1024
+-p[range] allows specifying a range of ports to be scanned, for example: -p10-1024
 
 >Version Detection<
 
 >OS Detection<
 
 Command -O this enables OS detection
-It relies on multiple indicators to make an educated guess on the OS
+It relies on multiple indicators to make an educated guess about the OS
 
-There is no perfect detection
+There is no perfect detection.
 
 >Service and Version Detection<
 
 Command -sV
 
-this command checks the version of the service running on an open port.
+This command checks the version of the service running on an open port.
 
 >OS+Version+Traceroute+More<
 
@@ -80,12 +80,12 @@ This command combines a lot of commands into one: -A
 
 >Forcing the Scan<
 
-Sometimes hosts will not reply to ICMP requests which leads to nmap marking it as down.
-We can tell nMap to port scan and treat all hosts as online by adding the command -Pn
+Sometimes hosts will not reply to ICMP requests which leads to Nmap marking it as down.
+We can tell Nmap to port scan and treat all hosts as online by adding the command -Pn
 
 >How Fast is Fast<
-With Nmap we can control the Scan speed to avoid being detected by IDS.
-Nmap has 5 Speeds: Paranoid 0, Sneaky 1, Polite 2, Normal 3, Agressive 4, Insane 5
+With Nmap, we can control the Scan speed to avoid being detected by IDS.
+Nmap has 5 Speeds: Paranoid 0, Sneaky 1, Polite 2, Normal 3, Aggressive 4, Insane 5
 
 We can pick these speeds by using the command -T Number -T Profile Name (-t0 or -T Paranoid)
 
@@ -101,9 +101,9 @@ T4 (aggressive) 	0.13 seconds
 >Helpfull options<
 
 Commands:
-Define the maximum number of probes sent by Nmap in paralel
---min-parallelism <numprobes> Defines the minimum of paralel service probes that nmap can do simultaneouly.
---max-parallelism <numprobes> Defines the Maximum of paralel service probes that nmap can do simultaneouly.
+Define the maximum number of probes sent by Nmap in parallel
+--min-parallelism <numprobes> Defines the minimum of parallel service probes that Nmap can do simultaneously.
+--max-parallelism <numprobes> Defines the Maximum of parallel service probes that Nmap can do simultaneously.
 
 Controls the number of packets per second Nmap can send.
 --min-rate <number>
@@ -115,14 +115,14 @@ This option defines the maximum time we are willing to wait. Used on slow hosts
 >Output: Controlling what to see<
 
 >How to show more info while performing a scan<
-We can use the command -v to enable verbose during a scan This way we can se what is happening in real time
+We can use the command -v to enable verbose during a scan This way we can see what is happening in real time.
 We can increase the verbosity by adding another v up to -vvvv or pressing v after the scan has started.
-Another way to do this isnted of -vvvv is -v4
+Another way to do this instead of -vvvv is -v4
 
-If this is not enough we can go into debuggin level by using -d up to -d4
+If this is not enough we can go into the debugging level by using -d up to -d4
 
 
->Choose scan file format in case we save it<
+>Choose the scan file format in case we save it<
 We can save scan reports by using the following commands
 
 
