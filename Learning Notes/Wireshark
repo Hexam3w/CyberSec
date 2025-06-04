@@ -1,0 +1,185 @@
+# Wireshark Overview
+
+Wireshark is one of the best traffic analysis tools available.
+
+## Uses
+
+- Detect and troubleshoot network issues  
+- Detect security anomalies  
+- Investigate and learn protocol details  
+
+> **Note:** Wireshark does not detect intrusions on its own. It is up to the analyst’s skills to detect any anomalies.
+
+---
+
+## Colouring Packets
+
+Wireshark allows you to customize the colouring of certain packets based on conditions.  
+This helps identify problems quickly and locate specific packets.
+
+- Colouring can be applied **permanently** or **temporarily**.
+
+---
+
+## Merge PCAP Files
+
+To merge files:
+
+- Go to `File -> Merge`
+
+---
+
+## View File Details
+
+Sometimes we need to identify the file we're working with for various reasons.
+
+- Navigate to `Statistics -> Capture File Properties`  
+- Or click the **pen and paper** icon in the bottom-left corner.
+
+---
+
+## Packet Dissection (AKA Protocol Dissection)
+
+Investigating packet details by understanding protocols and their fields.  
+You can even build custom scripts for deeper analysis.
+
+### Packet Layers (based on the OSI model)
+
+- **Frame (Layer 1):** Physical layer details.
+- **Source MAC (Layer 2):** Source and destination MAC addresses (Data Link layer).
+- **Source IP (Layer 3):** Source and destination IPv4 addresses (Network layer).
+- **Protocol (Layer 4):** Protocol used (TCP/UDP), source/destination ports (Transport layer).
+- **Protocol Errors:** TCP segment reassembly issues.
+- **Application Protocol (Layer 5):** HTTP, FTP, SMB, etc. (Application layer).
+- **Application Data:** Application-specific data.
+
+---
+
+## Packet Navigation
+
+- `Go -> Go to Packet`: Jump to a specific packet number.
+- `Edit -> Find Packet`: Search packet contents or events.
+
+### Effective Searching Requires:
+
+- **Input Type:** Display Filter, Hex, String, Regex  
+- **Search Field:** Packet List, Packet Details, Packet Bytes
+
+---
+
+## Mark Packets
+
+- Right-click to mark/unmark packets.
+- Marked packets **are not saved** after the session.
+
+---
+
+## Packet Comments
+
+- Right-click a packet to add a comment.  
+- Comments **are saved** if the session is saved.
+
+---
+
+## Export Packets
+
+Use this to narrow down your analysis.
+
+- Go to `File -> Export Specified Packets`
+
+---
+
+## Export Objects
+
+Wireshark can extract files transferred over the network (for supported protocols).
+
+- Go to `File -> Export Objects -> [File Type]`
+
+---
+
+## Time Display Format
+
+By default, Wireshark shows time in seconds since capture start.  
+To get more informative timestamps:
+
+- `View -> Time Display Format -> UTC Date and Time`
+
+---
+
+## Expert Information
+
+Groups protocol states to help identify issues quickly.
+
+- Access via the **circle icon** in the bottom-left corner or `Analyze -> Expert Information`.
+
+### Colour Indicators:
+
+- **Blue:** Workflow information  
+- **Cyan:** Notable events (e.g., application error codes)  
+- **Yellow:** Unusual error codes or warnings  
+- **Red:** Problems (e.g., malformed packets)
+
+---
+
+## Packet Filtering
+
+- **Capture Filters:** Filter packets before capture.  
+- **Display Filters:** Filter packets after capture (for viewing).
+
+---
+
+## Apply as Filter
+
+Basic filtering method:
+
+- Right-click a field (e.g., Source IP) → `Apply as Filter`  
+- Or go to `Analyze -> Apply Filter`
+
+---
+
+## Conversation Filter
+
+Enables more advanced filtering, such as packets with the same IP and specific ports.
+
+---
+
+## Colourise Conversation
+
+Visually distinguishes related packets without applying a filter.
+
+- Right-click or use `View -> Colourise Conversation`
+
+---
+
+## Prepare as Filter
+
+Similar to "Apply as Filter", but allows editing before running:
+
+- Right-click → `Prepare as Filter`  
+- You can extend the filter with **AND/OR** conditions.
+
+---
+
+## Apply as Column
+
+Add/remove columns to display more information:
+
+- Right-click the column header or go to `Analyze -> Apply as Column`
+
+---
+
+## Follow Stream
+
+Displays data as it appears at the application level.  
+Useful for inspecting login data, credentials, and plain-text protocols.
+
+- Right-click a packet or go to `Analyze -> Follow TCP/UDP/HTTP Stream`
+
+### Stream Display:
+
+- **Red:** Client  
+- **Blue:** Server
+
+> When following a stream, Wireshark applies a stream filter automatically.  
+> To return to the full view, click the **X** on the filter bar.
+
