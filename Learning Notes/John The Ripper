@@ -21,7 +21,7 @@ john --format=[format] --wordlist=[path to wordlist] [path to file]
     --format=: This is the flag to tell John that you’re giving it a hash of a specific format and to use the following format to crack it
     [format]: The format that the hash is in
 when specifying the format if it is a standard one like MD5 we need to use the prefix -raw
-in case of doubt we can use john --list=formats
+in case of doubt, we can use john --list=formats
 
 john --format=raw-md5 --wordlist=/usr/share/wordlists/rockyou.txt hash_to_crack.txt
 
@@ -31,7 +31,7 @@ hash-identifier - a Python tool
 
 >Linux Passwords Crack<
 
-To use John to crack these password we need to give the program more information than just the file in /etc/shadow
+To use John to crack these passwords we need to give the program more information than just the file in /etc/shadow
 
 if we join /etc/shadow and combine it with /etc/passwd we call this unshadowing.
 There is a tool in john called unshadow for this and the syntax is as follows:
@@ -46,11 +46,11 @@ unshadow [path to passwd] [path to shadow]
 
 This mode uses information provided in the username to try and work out passwords
 
-In the case of username alice john would build a possible password by trying Alice1 Alice2 AlIcE ...
+In the case of username Alice john would build a possible password by trying Alice1 Alice2 AlIcE ...
 
-John can also look at the 5th field of /etc/shadow and /etc/passwd . This field is Called GECOS field and has information about the user. this information can also be used in the password crack attempt
+John can also look at the 5th field of /etc/shadow and /etc/passwd . This field is called GECOS field and has information about the user. this information can also be used in the password crack attempt
 
-To use the Single Crack mode we need to tell john to do so and we use the follow syntax:
+To use the Single Crack mode we need to tell john to do so and we use the following syntax:
 --single
 
 A Note on File Formats in Single Crack Mode:
@@ -63,19 +63,19 @@ To mike:1efee03cdcb96d90ad48ccc7b8666033
 
 >Custom rules<
 
-Some websites require certain password complexities. We can add custom rules to accont for these
+Some websites require certain password complexities. We can add custom rules to account for these
 
-For example we can exploit the fact that must users when faced with password complexity choose the first letter has capital numbers after the word followed by a special character.
+For example, we can exploit the fact that most users when faced with password complexity choose the first letter that  has capital numbers after the word followed by a special character.
 
 We can use this knowledge to create dynamic passwords from our lists.
 
 >How to create custom rules?<
-Custom rules are defined in the john.conf file.It is usually located in /etc/john/john.conf
+Custom rules are defined in the john.conf file. It is usually located in /etc/john/john.conf
 
 We can use the following to define the rule name: [List.Rules:rulename]
 
 
-Somo rules sintax
+Some rules syntax
 
 
     Az: Takes the word and appends it with the characters you define
@@ -98,12 +98,12 @@ cAz"[0-9] [!£$%@]"
 
 >Cracking Password protected zip files<
 
-First we need to convert the zip to a file john understands
+First, we need to convert the zip to a file john understands
 
 >Zip2John<
 Similar to unshadow we use a tool called zip2john to convert the file
 
-Sintax:
+Syntax:
 zip2john [options] [zip file] > [output file]
 
 
@@ -113,11 +113,11 @@ zip2john [options] [zip file] > [output file]
     [output file]: This is the file that will store the output
 
 >Rar2John<
-for this we can use a similar process
+for this, we can use a similar process
 rar2john [rar file] > [output file]
 
 >Cracking SSH Key Passwords<
-You can authenticate to SSH with a user and password but also with your private key, id_rsa, This key is protected by password and we will need john to crack it.
+You can authenticate to SSH with a user and password but also with your private key, id_rsa, This key is protected by a password and we will need john to crack it.
 
 >SSH2John<
 converts id_rsa to a hash format.
@@ -125,5 +125,5 @@ converts id_rsa to a hash format.
 Syntax:
 ssh2john [id_rsa private key file] > [output file]
 
-Only kali we must swap ssh2john to python /usr/share/john/ssh2john.py in case we dont have it installed.
+Only Kali we must swap ssh2john to python /usr/share/john/ssh2john.py in case we don't have it installed.
 
