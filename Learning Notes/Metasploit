@@ -2,13 +2,13 @@
 
 Is the most widely used exploitation tool.
 
-Usefull in all stages of pen. Testing from info gathering to post-exploitation
+Useful in all stages of pen. Testing from info gathering to post-exploitation
 
 It has 2 versions:
-Metasploit Pro : Commercial version with automation and management of tasks (Has GUI)
+Metasploit Pro: Commercial version with automation and management of tasks (Has GUI)
 Metasploit Framework: Open source Version that works in command Line
 
-With Metasploit we can: Gather Information, Scan, Exploit, Develop exploits, Post-Exploitation and more.
+With Metasploit, we can: Gather Information, Scan, Exploit, Develop exploits, Post-Exploitation and more.
 
 The main components of Metasploit framework are:
 
@@ -18,13 +18,13 @@ Tools: Stand-alone tools that will help vulnerability research, vulnerability as
 
 >Main Components of Metasploit<
 
-We can launch metasploit with the command msfconsole
+We can launch Metasploit with the command msfconsole
 
 It uses modules to perform specific tasks.
 
 >Modules<
 Auxiliary
-Any supporting module, such as scanners, crawlers and fuzzers
+Any supporting module, such as scanners, crawlers, and fuzzers
 
 Encoders
 Encoders will allow you to encode the exploit and payload in the hope that a signature-based antivirus solution may miss them.
@@ -41,23 +41,23 @@ NOPs (No OPeration) do nothing, literally. They are represented in the Intel x86
 
 Payloads
 Payloads are codes that will run on the target system. 
-There are 4 diferent categories inside payloads. Adapters, singles, Stagers, stages
+There are 4 different categories inside payloads. Adapters, singles, Stagers, stages
 
-    Adapters: An adapter wraps single payloads to convert them into different formats. For example, a normal single payload can be wrapped inside a Powershell adapter, which will make a single powershell command that will execute the payload.
+    Adapters: An adapter wraps single payloads to convert them into different formats. For example, a normal single payload can be wrapped inside a Powershell adapter, which will make a single Powershell command that will execute the payload.
     Singles: Self-contained payloads (add user, launch notepad.exe, etc.) that do not need to download an additional component to run.
-    Stagers: Responsible for setting up a connection channel between Metasploit and the target system. Useful when working with staged payloads. “Staged payloads” will first upload a stager on the target system then download the rest of the payload (stage). This provides some advantages as the initial size of the payload will be relatively small compared to the full payload sent at once.
-    Stages: Downloaded by the stager. This will allow you to use larger sized payloads.
+    Stagers: Responsible for setting up a connection channel between Metasploit and the target system. Useful when working with staged payloads. “Staged payloads” will first upload a stager on the target system and then download the rest of the payload (stage). This provides some advantages as the initial size of the payload will be relatively small compared to the full payload sent at once.
+    Stages: Downloaded by the stager. This will allow you to use larger-sized payloads.
 
 Post
-Post modules will be useful on the final stage of the penetration testing process - post-exploitation.
+Post modules will be useful in the final stage of the penetration testing process - post-exploitation.
 
 
 >Metasploit Console<
 
-After using the command msfconsole we can use pretty much any linux command and it will work has expected
-There are some commands that will not work like redirection >
+After using the command msfconsole we can use pretty much any Linux command and it will work as expected
+Some commands will not work like redirection >
 
-we can Use the help command followed by other option to get information about it. Example: help set
+we can use the help command followed by another option to get information about it. Example: help set
 
 Msfconsole is managed by context; this means that unless set as a global variable, all parameter settings will be lost if you change the module you have decided to use
 
@@ -65,17 +65,17 @@ To select an exploit we use the command: use
 
 Once we select the exploit we can use the command " show options " to view the options we can work with
 
-With the exploit selected we can also use the command show to view other options that we can use with the exploit like payloads
-We do this by typing show payploads
+With the exploit selected, we can also use the command show to view other options that we can use with the exploit like payloads
+We do this by typing show payloads
 
 to get out of the context or exploit selected you use the back command
 
 we can get more information on a module by typing info
 
-Search. the command search is one of the most important. we can conduct searchs using cve numbers or exploit names example: search ms17-010
+Search. The command search is one of the most important. we can conduct searches using CVE numbers or exploit names example: search ms17-010
 We will also have access to exploit rankings that can be further explained here: https://github.com/rapid7/metasploit-framework/wiki/Exploit-Ranking
 we can use the command use followed by the number in the search to enter that module.
-A way to filter search results is by type we can use commands such as "search type:auxiliary telnet" to filter for auxiliary telnet modules only
+A way to filter search results is by type we can use commands such as "search type: auxiliary telnet" to filter for auxiliary telnet modules only
 
 >Work with Modules<
 
@@ -94,7 +94,7 @@ Parameters you will often use are:
     LPORT: “Local port”, the port you will use for the reverse shell to connect back to. This is a port on your attacking machine, and you can set it to any port not used by any other application.
     SESSION: Each connection established to the target system using Metasploit will have a session ID. You will use this with post-exploitation modules that will connect to the target system using an existing connection.
 
-NOTE: To clear a set command we use the command unset , or unset all to clear all the field
+NOTE: To clear a set command we use the command unset, or unset all to clear all the field
 
 SET A VALUE ACROSS ALL MODULES
 we can use the command "setg" to set values that will not erase even if we change modules
@@ -103,7 +103,7 @@ We can clear any value set with setg using unsetg.
 >Use modules<
 
 To use modules we can use the command "exploit" or the command "run" (They are the same)
-This commands can be used without any parameters or with the -z parameter.
+These commands can be used without any parameters or with the -z parameter.
 The -z command will run the exploit and background the session as soon as it opens
 
 Some modules support the check option. This will check if the target system is vulnerable without exploiting it.
@@ -111,7 +111,7 @@ Some modules support the check option. This will check if the target system is v
 >Sessions<
 
 Once we exploit with success a session will be created. This is the communication method from the target to metasploit.
-to allow us to continue using metasploit we need to background the session. We can do this with the command -z with the command exploit or we can type the background commmand or simply press ctrl+z
+to allow us to continue using metasploit we need to background the session. We can do this with the command -z with the command exploit or we can type the background command or simply press ctrl+z
 
 We can use the "sessions" command to check all current active sessions
 
