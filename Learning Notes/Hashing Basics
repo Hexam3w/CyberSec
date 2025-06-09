@@ -1,0 +1,58 @@
+>Hash Functions<
+
+They have no key and are meant to be impossible to go from output to input.
+
+A hash function takes some input data and creates a summary/digest of that data.
+The output always has a fixed size.
+It is tough to predict the output from an input or vice versa.
+
+These algorithms are usually fast to compute but almost impossible to reverse.
+A single bit of difference in the input data will cause a different output.
+
+We can use the following commands to see:
+The hexadecimal value of the file : hexdump -C file
+MD5 hash: md5sum file
+SHA1: sha1sum
+SHA-256: sha256sum
+
+Common encodings are base64 or hexadecimal. 
+md5sum, sha1sum, sha256sum, and sha512sum produce outputs in hexadecimal format.
+
+>Securing password storage<
+
+We should store passwords as hash values instead of plaintext
+But even hashes can be cracked with Rainbow tables
+
+Rainbow tables compare the value of solved hashes with unsolved ones to try to solve them.
+To fight this a SALT can be added to each password.
+
+A Salt is a random value that is added to the password before it is hashed
+This random value is then stored in a database.
+Ideally, we should have a random salt for each user to make it harder to crack otherwise we can still use rainbow tables.
+
+>Websites to crack Hashes<
+https://crackstation.net/
+https://hashes.com/en/decrypt/hash
+
+>How to identify a Hash<
+Website: https://pypi.org/project/hashID/  (Unreliable) Good for hashes with prefixes
+
+>Linux Passwords<
+Password hashes are stored in /etc/shadow
+Each line has 9 fields
+The first 2 fields are login and password
+The second field is composed of $prefix$options$salt$hash
+
+>Windows Passwords<
+Windows passwords are hashed in NTLM (visually identical to MD4 and MD5 so context is important)
+Passwords are stored in the SAM ( Security Accounts Manager)
+Normal users can use tools like Mimikatz to dump the passwords and bypass security
+
+>Hashes examples<
+
+We can use this website to look at various examples of hashes , length, encoding, etc.
+https://hashcat.net/wiki/doku.php?id=example_hashes
+
+>Crack Hashes<
+We can use:
+Hashcat or Jhon the Ripper
