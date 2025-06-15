@@ -1,0 +1,305 @@
+>Web application Basics<
+
+>Front end<
+Its the part we have access and see
+HTML CSS and JavaScript
+
+HTML -> Tells the page what to show and how to show it
+CSS -> Stylise how the page shows.
+JavaScript -> Where HTML is a simple set of instructions JavaScript enables for more complex activity
+
+>Back End<
+Its the part we don't have access and don't see
+Database, Infrastructure, Waf
+
+Database- Where information is stored, modified and retrieved
+Infrastructure- Webservers, storage, network devices, other software
+Waf- Web application Firewall - Option component and provides protection
+
+>URL Uniform Resource Locator<
+
+Anatomy of a URL
+
+Example URL:
+http://user:password@Testwebsite.com:80/view-folder?id=1#task1
+
+Scheme "http"
+Defines the protocol used to access the website. Most commons are http and https
+
+User "user:password"
+Some urls can include user authentication details like login and password but its uncommon nowadays because it is not very safe
+
+Host/Domain "testwebsit.com
+This is the most important part of the a URL. It tells us what website we are accessing
+
+Port "80"
+Tells what port the service is running on the web server. Usually http and https runs on 80 and 443 respectively.
+
+Path "/view-folder"
+This points to a specific page we are trying to access. it shows the browser what to request from the webserver.
+
+Query String "?id=1"
+Its often used for search terms or form inputs. since users can modify these strings its important to make them safe to avoid injection attacks.
+
+Fragment "#task1"
+This helps point to a specific part of a website jumping to a certain header or topic. This can also be modified by the user and have the risk of injection attacks.
+
+
+>HTTP Messages<
+HTTP messages are packets of data exchanged between a user (the client) and the web server.
+
+There are 2 types of HTML messages
+HTTP requests - sent by the user to trigger action
+HTTP responses - sent by the server in response to the user request
+
+Each message follows a specific format.
+
+Start Line
+Tell what kind of message is being sent (request or response) and gives details on how the message should be handled
+
+Headers
+Provide extra information about the HTTP message. they cover all sorts of things like  security, content types, and more, making sure everything goes smoothly in the communication.
+
+Empty Line
+Separates the header from the body. Used to know where the message starts and where the header finishes. Without this it can cause errors client side or server side.
+
+Body
+This is where the actual data is stored. In a request it may contain data the user wants to send to the server and in a response its where the web server puts the content for the user.
+
+
+>HTTP Request: Request line and Methods<
+
+Example of request line:
+GET /user/login.html HTTP/1.1
+
+The request line (or start line) is the first part of an HTTP request and tells the server what kind of request it’s dealing with. It has three main parts: the HTTP method, the URL path, and the HTTP version.
+
+HTTP Methods "GET"
+
+GET
+Used to fetch data from the server without making any changes. Reminder! Make sure you’re only exposing data the user is allowed to see. Avoid putting sensitive info like tokens or passwords in GET requests since they can show up as plaintext.
+
+POST
+Sends data to the server, usually to create or update something. Reminder! Always validate and clean the input to avoid attacks like SQL injection or XSS.
+
+PUT
+Replaces or updates something on the server. Reminder! Make sure the user is authorised to make changes before accepting the request.
+
+DELETE
+Removes something from the server. Reminder! Just like with PUT, make sure only authorised users can delete resources.
+
+Besides these common methods, there are a few others used in specific cases:
+
+PATCH
+Updates part of a resource. It’s useful for making small changes without replacing the whole thing, but always validate the data to avoid inconsistencies.
+
+HEAD
+Works like GET but only retrieves headers, not the full content. It’s handy for checking metadata without downloading the full response.
+
+OPTIONS
+Tells you what methods are available for a specific resource, helping clients understand what they can do with the server.
+
+TRACE
+Similar to OPTIONS, it shows which methods are allowed, often for debugging. Many servers disable it for security reasons.
+
+CONNECT
+Used to create a secure connection, like for HTTPS. It’s not as common but is critical for encrypted communication.
+
+Each of these methods has its own set of security rules. For example, PATCH requests should be validated to avoid inconsistencies, and OPTIONS and TRACE should be turned off if not needed to avoid possible security risks.
+
+URL PATH "/user/login.html"
+
+The URL path tells the server where to find the resource the user is asking for. Sometimes these can identify specific users.
+These can be manipulated to exploit vulnerabilities.
+To avoid this we must: 
+
+    Validate the URL path to prevent unauthorised access
+    Sanitise the path to avoid injection attacks
+    Protect sensitive data by conducting privacy and risk assessments
+
+HTTP Version " HTTP /1.1"
+The HTTP version shows the protocol version used to communicate between the client and server.
+
+The most common nowadays are HTTP/1.1 HTTP/2 HTTP/3
+
+
+Request Headers and Body
+URL Headers can pass extra information to be passed down to the web server.
+
+Common request headers
+Host: Specifies the name of the web server the request is for.
+User-Agent: Shares information about the web browser the request is coming from.
+Referer: Indicates the URL from which the request came from.
+Cookie: Information the web server previously asked the web browser to store is held in cookies. 
+Content-Type: Describes what type or format of data is in the request.
+
+Request Body
+
+In HTTP requests such as POST and PUT, where data is sent to the web server as opposed to requested from the web server, the data is located inside the HTTP Request Body. The formatting of the data can take many forms, but some common ones are URL Encoded, Form Data, JSON, or XML.
+
+URL Encoded (application/x-www-form-urlencoded)
+A format where data is structured in pairs of key and value where (key=value). Multiple pairs are separated by an (&) symbol, such as key1=value1&key2=value2. Special characters are percent-encoded.
+
+Form Data (multipart/form-data)
+Allows multiple data blocks to be sent where each block is separated by a boundary string. The boundary string is the defined header of the request itself. This type of formatting can be used to send binary data, such as when uploading files or images to a web server. 
+
+JSON (application/json)
+In this format, the data can be sent using the JSON (JavaScript Object Notation) structure. Data is formatted in pairs of name : value. Multiple pairs are separated by commas, all contained within curly braces { }.
+
+XML (application/xml)
+In XML formatting, data is structured inside labels called tags, which have an opening and closing. These labels can be nested within each other.
+
+
+>HTTP Response: Status line and Status Codes<
+
+When you interact with a web application, the server sends back an HTTP response to let you know whether your request was successful or something went wrong. These responses include a status code and a short explanation (called the Reason Phrase) that gives insight into how the server handled your request.
+
+The first line in every HTTP response is called the Status Line. It gives you three key pieces of info:
+
+    HTTP Version: This tells you which version of HTTP is being used.
+    Status Code: A three-digit number showing the outcome of your request.
+    Reason Phrase: A short message explaining the status code in human-readable terms.
+
+he Status Code is the number that tells you if the request succeeded or failed, while the Reason Phrase explains what happened. These codes fall into five main categories:
+
+Informational Responses (100-199)
+These codes mean the server has received part of the request and is waiting for the rest. It’s a "keep going" signal.
+
+Successful Responses (200-299)
+These codes mean everything worked as expected. The server processed the request and sent back the requested data.
+
+Redirection Messages (300-399)
+These codes tell you that the resource you requested has moved to a different location, usually providing the new URL.
+
+Client Error Responses (400-499)
+These codes indicate a problem with the request. Maybe the URL is wrong, or you’re missing some required info, like authentication.
+
+Server Error Responses (500-599)
+These codes mean the server encountered an error while trying to fulfil the request. These are usually server-side issues and not the client’s fault.
+
+Common Status Codes
+
+Here are some of the most frequently seen status codes:
+
+100 (Continue)
+The server got the first part of the request and is ready for the rest.
+
+200 (OK)
+The request was successful, and the server is sending back the requested resource.
+
+301 (Moved Permanently)
+The resource you’re requesting has been permanently moved to a new URL. Use the new URL from now on.
+
+404 (Not Found)
+The server couldn’t find the resource at the given URL. Double-check that you’ve got the right address.
+
+500 (Internal Server Error)
+Something went wrong on the server’s end, and it couldn’t process your request.
+
+Reponse Headers
+
+When a web server responds to an HTTP request, it includes HTTP response headers, which are basically key-value pairs. These headers provide important info about the response and tell the client (usually the browser) how to handle it.
+
+Required Response Headers
+
+Date: Shows the date and time when the response was generated
+Content-type: Tell the client what type of content is getting. It also has character set like utf-8 to help the browser display things correctly
+Server: Shows what kind of server software is handling the request. Good for debugging but also gives information to attacker.
+
+Other common response headers
+
+Set-cookie
+sends cookies from the server that is then stored by the client to send if future requests.To keep things secure, make sure cookies are set with the HttpOnly flag (so they can’t be accessed by JavaScript) and the Secure flag (so they’re only sent over HTTPS).
+
+Cache-control
+Tells the client how long it can cache the response before having to check the server again. It can also prevent sensitive info from being cache with a no-cache command.
+
+Location
+Used in redirection 3xx responses. Tells the client where to go next if the url or resource was moved. To prevent cross site scripting (XSS) always sanitise and escape any data before including it in the response.
+
+
+>Security Headers<
+
+HTTP Security Headers help improve the overall security of the web application by providing mitigations against attacks like Cross-Site Scripting (XSS), clickjacking, and others.
+
+Most common security headers:
+
+    Content-Security-Policy (CSP)
+    Strict-Transport-Security (HSTS)
+    X-Content-Type-Options
+    Referrer-Policy
+
+
+We can use a site like https://securityheaders.io/ to analyse the security headers of any website
+
+Content-Security-Policy (CSP)
+
+A CSP header is an additional security layer that can help mitigate against common attacks like Cross-Site Scripting (XSS). Malicious code could be hosted on a separate website or domain and injected into the vulnerable website. A CSP provides a way for administrators to say what domains or sources are considered safe and provides a layer of mitigation to such attacks.
+
+ Within the header itself, you may see properties such as default-src or script-src defined and many more. Each of these give an option to an administrator to define at various levels of granularity, what domains are allowed for what type of content. The use of self is a special keyword that reflects the same domain on which the website is hosted.
+
+Looking at an example CSP header:
+
+Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.testsite.com; style-src 'self' 
+
+We see the use of:
+
+    default-src
+    - which specifies the default policy of self, which means only the current website.
+
+    script-src
+    - which specifics the policy for where scripts can be loaded from, which is self along with scripts hosted on https://cdn.testsite.com
+
+    style-src
+    - which specifies the policy for where style CSS style sheets can be loaded from the current website (self)
+
+Strict-Transport-Security (HSTS)
+
+The HSTS header ensures that web browsers will always connect over HTTPS. Let's look at an example of HSTS:
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+
+Here’s a breakdown of the example HSTS header by directive:
+
+    max-age
+    - This is the expiry time in seconds for this setting
+
+    includeSubDomains
+    - An optional setting that instructs the browser to also apply this setting to all subdomains.
+
+    preload
+    - This optional setting allows the website to be included in preload lists. Browsers can use preload lists to enforce HSTS before even having their first visit to a website.
+
+X-Content-Type-Options
+
+The X-Content-Type-Options header can be used to instruct browsers not to guess the MIME time of a resource but only use the Content-Type header. Here’s an example:
+
+X-Content-Type-Options: nosniff
+
+Here’s a breakdown of the X-Content-Type-Options header by directives:
+
+    nosniff
+    - This directive instructs the browser not to sniff or guess the MIME type.
+
+Referrer-Policy
+
+This header controls the amount of information sent to the destination web server when a user is redirected from the source web server, such as when they click a hyperlink. The header is available to allow a web administrator to control what information is shared.  Here are some examples of Referrer-Policy:
+
+    Referrer-Policy: no-referrer
+    Referrer-Policy: same-origin
+    Referrer-Policy: strict-origin
+    Referrer-Policy: strict-origin-when-cross-origin
+
+Here’s a breakdown of the Referrer-Policy header by directives:
+
+    no-referrer
+    - This completely disables any information being sent about the referrer
+
+    same-origin
+    - This policy will only send referrer information when the destination is part of the same origin. This is helpful when you want referrer information passed when hyperlinks are within the same website but not outside to external websites.
+
+    strict-origin
+    - This policy only sends the referrer as the origin when the protocol stays the same. So, a referrer is sent when an HTTPS connection goes to another HTTPS connection.
+
+    strict-origin-when-cross-origin
+    - This is similar to strict-origin except for same-origin requests, where it sends the full URL path in the origin header.
