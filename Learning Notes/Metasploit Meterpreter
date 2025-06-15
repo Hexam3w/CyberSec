@@ -1,0 +1,47 @@
+>Meterpreter<
+
+Acts like an agent it will interact with the target OS and file with his commands.
+
+Meterpreter has various versions with different functions on the target system.
+
+Meterpreter run of the target system memory. This is to avoid detection during antivirus scans. This way meterpreter will be seen as a process and not a file.
+
+Another way it avoids detection by the network-based IPS (intrusion prevetion system) and IDS(intrusion detection system) is by using encrypted communication. Unless the organization decrypts and inspects the traffic being received and sent of the local network these systems will be unable to detect meterpreter activities.
+
+Even though meterpreter is recognized by major antivirus software this features provide some degree of stealth.
+
+We can use the command getpid to get the PID of the process of meterpreter.
+
+We can use the command ps to list all the system processes.
+
+If we analise the processes we will find that the meterpreter process does not have its name, neither the DLL's running on that process. This is to show the stealthy capabilities of meterpreter.
+
+Meterpreter uses an encrypted (TLS) communication channel.
+
+>Meterpreter Commands<
+
+help - lists all available commands. every version has different commands so running help is always a great idea.
+
+
+Meterpreter will provide us with three primary categories of tools;
+
+    Built-in commands
+    Meterpreter tools
+    Meterpreter scripting
+
+Some commands may not work even although they are still displayed. Example: Webcam commands may not work if the system does not have a webcam.
+
+getuid - The getuid command will display the user with which Meterpreter is currently running. This will give you an idea of your possible privilege level on the target system (e.g. Are we an admin level user like NT AUTHORITY\SYSTEM or a regular user?)
+
+ps - will list all the running processes.
+
+migrate <pid> - migrating to another process can help us interact with it. if there is a word processor for example we can migrate meterpreter to that process and start capturing key strokes. It can also help us getting a more stable session.
+
+Note: WE may lose privileges by doing this. ( From SYSTEM to webserver)
+
+hashdump - we can dump the users password hashs that are stored in the SAM database. We can then try to crack them online using NTLM databases or rainbow tables. Can also be used in Pass-the-Hash attacks to authenticate.
+
+search - usefull to locat files with juicy information. in a ctf it can be used to quickly find a flag.
+
+shell - this will open a regular command line shell. we can use ctrl+z to go back to meterpreter shell.
+
