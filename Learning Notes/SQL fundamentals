@@ -1,0 +1,247 @@
+>SQL fundamentals<
+
+>Types of Databases<
+
+Relational Databases:
+Table-Based
+
+The data in this database follows a structure (Structured data), and this data is stored in rows and columns in a table. Relationships can be made with two or more tables hence the relational databases.
+
+Non-Relational Databses
+Key-value
+Graph
+Wide-column
+Document
+
+The data is stored in a non tabular format.
+
+Relational databases - Used more where data needs a certain specific structure. (Username, Passwords)
+Non-Retalional databses - Used when data does not follow specific structures (like facebook posts)
+
+>Tables, Rows, Columns<
+
+Table - All data stored in a relational database is stored in a table
+Columns - When can define columns to represent different inputs like name, date, country. We can also define what type of data each column can hold and if an attempt is made to insert other type of data then is rejected. Some data types are: strings (words and characters), Integers (numbers), floats/decimals (numbers with decimal points) and Times/dates.
+Row- Once we insert a record into a database it will be represented as a row.
+
+>Primary and Foreign Keys<
+
+Keys helps us relate data in table A with data in table B. Example: I want to retrieve data about a book and also about who is the author but the author data is stored in a different table.
+
+Primary Key:Identifies  each record on stored in the table (ID) Only 1 primary key per table.
+
+Foreign Keys: A column in a table that link this row information with information in a different table.
+
+>What is SQL<
+
+Databases are usually controlled using a Database management system (DBMS) that serves as an interface between the end user and a database allowing users to retrive insert and modify data in the database.
+Examples of  DBMS: MySQL, MongoDB, Oracle Database, Maria DB
+
+SQL -> is a programming language that is used to query, define, and manipulate data in a relational database.
+
+>Benefits of SQL<
+
+Its Fast!
+
+Easy to learn - Written in plain English
+
+Reliable
+
+Flexible - Provides a lot of capabilities, efficient querys
+
+>Learn SQL<
+
+To launch MySQL on Linux we use this command:
+mysql -u root -p
+-u root (specifies user (-u) and user name (root)
+-p (will request we insert a password)
+
+Create a database
+
+Command: CREATE DATABASE database_name;
+Example:CREATE DATABASE football_players;
+
+Show Databases:
+
+Command: mysql> SHOW DATABASES;
+
+Use a Database:
+
+Command: USE database_name;
+
+Remove a database:
+
+Command: DROP database database_name;
+
+Create a table:
+
+Command: CREATE TABLE example_table_name (
+    example_column1 data_type,
+    example_column2 data_type,
+    example_column3 data_type
+);
+
+Show Table:
+
+Command: Show tables
+
+Query what columns exist in a table:
+
+Command: DESCRIBE table_name;
+
+Add/Remove make changes to table:
+
+Command: ALTER TABLE table_name 
+Add alteration on the following line like: ADD name_collumn Data_type;
+
+Remove a table:
+
+Command: DROP TABLE table_name;
+
+
+
+>CRUD OPERATIONS<
+
+Stands for Create, Read, Update, Delete
+
+Create operation (INSERT):
+
+This operation adds new data to tables
+
+Command: INSERT INTO table_name ( Collumns names)
+second line we can add the values with : VALUES ( Value 1, Value 2,... )
+
+
+Read Operation ( SELECT )
+Used to retrieve data from a table
+
+Command: SELECT * FROM table_name
+* means all collumns
+
+Update Operation ( UPDATE)
+
+This modifies an existing record
+
+Command: UPDATE table_name
+Set collums_name =" New data"
+WHERE id = 1;
+
+Delete Operation (DELETE):
+
+Removes records from a table
+
+Command: DELETE FROM table_name WHERE id = 1;
+
+
+>Clauses<
+
+Parts of statement that help us define what data and from where should be manipulated
+
+Clauses examples: FROM, WHERE, DISTINCT, GROUP BY, ORDER BY, HAVING
+
+DISTINCT:
+Use to retrieve results without duplicates
+
+GROUP BY:
+
+Aggregate data from multiple records. Can be handy to count how many of a thing exist.
+
+ORDER BY:
+Sorts records in a certain order
+We can use ASC or DESC at the end to define the order 
+Example:  SELECT * FROM table_name ORDER BY column_name ASC;
+
+HAVING:
+Filters results if they have a certain condition
+
+>Operators<
+ Are ways to filter and manipulate data
+They help us create powerfull queries
+
+Logical Operators:
+
+LIKE:
+Used a lot with clauses like WHERE ir order to filter for specific things in a column.
+Example: SELECT * FROM table_name WHERE column_name LIKE content_we_want_to_filter;
+
+Good to find specific words
+
+AND:
+
+Used to compare multiple conditions and returns TRUE (shows their values) is they are all true
+
+Example: WHERE category = "category content" AND name = "Name_we_want";
+
+OR:
+
+Like AND above to returns TRUE if at least one is true
+
+NOT:
+
+Allows us to retrieve data that do not contain certain aspects
+
+example WHERE NOT columns_name LIKE "data_not_wanted";
+
+BETWEEN:
+
+Returns values between a range
+
+Example: WHERE id BETWEEN 2 and 4;
+
+
+Comparison Operators:
+
+= returns values if they are equal to the define value
+
+example: WHERE name = "name_we_looking_for"
+
+!= (Not equal to)  Same as above to return values that are different of the defined value
+
+< (Less than)
+
+> (Greater than)
+
+<= Less than or equal to
+>= Greater than or equal to
+
+
+>Functions<
+
+Functions are used to perform complex operations like combine texts from different collums
+
+CONTACT() :
+
+Used to concatenate collumns 
+
+GROUP_CONCAT()
+
+Used to concatenate data from multiple rows in one field
+
+SUBSTRING()
+
+Used to return a substring from a query (like the year on a date). We can also specify length
+
+
+LENGTH()
+
+Return the number of characters in a string (includes spaces and punctuation)
+
+Aggregate Functions:
+
+These functions aggregate multiple rows in one specific criteria
+
+COUNT()
+
+Used to count the number of records with a certain expression
+
+SUM()
+
+This function sums all values that are not null in a determined column
+
+MAX()
+
+This function returns the maximum value on a column
+
+Min()
+Same as MAX but returns the minimum value
+
