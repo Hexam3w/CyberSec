@@ -1,0 +1,117 @@
+>Javascript<
+
+>Variables<
+
+Variables are containers that allow you to store data.
+There are 3 ways to declare variables in JS (give them a name): var, let, const.
+Var - Function Scoped
+Let , const - Block-scoped
+
+>Data Types<
+
+Define the type of data a variable holds.
+String - Text
+Number - Number
+Boolean - True/False
+Null
+Undefined
+Object - for more complex data like arroys or objects
+
+>Functions<
+
+Is a block of code designed to do a specific task.
+Every time we need to use this function we can call it instead of having to code it again.
+
+>Loops<
+
+Alows us to run a code block as long as a condition is true
+
+Common loops:
+for
+while
+do...while
+
+This allows us to call a function say 100 times without having to write 100 calls to the function.
+
+>Request-Response Cycle<
+Is when a client sends a request via a web browser and receives a reply/response from the server
+
+>Integrate JS with HTML<
+
+There are 2 ways - Internaly and Externally
+
+>Internal JS<
+
+Refers to embbed JS code within a HTML document
+The script is inserted within the <scrip> tags
+Usually on the <head> if loaded before page is rendered or <body> if it is to interact with elements as they load
+
+>External JS<
+
+Refers to creating and storing JS code in a separate file with a .js extension
+
+>Verifying Internal or External JS<
+
+
+>Abusing Dialogue Functions<
+
+JS is used a lot to provide dialogue functionaly that helps display messages, gather user input, and obtain confirmation. We can use alert, prompt and confirm functions for this.
+If not implemented correctly attackers can use it to run cross site scripting (XSS)
+
+>Alert Function<
+
+Displays a message in a box with an ok button.
+
+>Prompt function<
+
+Used to gather input from the user
+Displays a Dialogue box that asks user for input.
+Has a cancel button (returns null if pressed) and a Ok to submit the input
+
+
+>Confirm function<
+
+Used to confirm user actions
+Opens a dialog box with 2 buttons . OK returns true and Cancel returns false
+
+
+>Bypassing Control Flow Statements<
+
+Control flow refers to the order statements and code blocks are executed.
+JS control flows: 
+To make decision: if-else , switch
+To repeat actions: for , while , do...while
+
+>Condition Statements<
+
+Common: if-else that allows us to execute code if a condition is true or false.
+
+Example: look for exposed credentials in the JS code of flow statements
+
+>Exploring Minified Files<
+
+Minification is the act of removing all the unnecessary characters such as spaces lines comments from a JS file.
+Its harder for humans to read.
+Still function the same
+
+Obfuscation is also used regularly by adding undesired code, renaming variables and functions to meaningless names, and even inserting dummy code.
+
+JS obfuscator: https://codebeautify.org/javascript-obfuscator
+JS deobfuscator: https://obf-io.deobfuscate.io/
+
+>Best Practices<
+
+-> Avoid Relying on Client-Side Validation Only
+
+Since users can disable/manipulate JS on their side its important to do server side validation too.
+
+-> Refrain from adding untrusted Libraries
+
+Bad actors have uploaded many libraries to the internet which names resemble legitimate ones. If a dev included a malicious library he can expose the web app to threats.
+
+-> Avoid Hardcoded Secrets
+
+Don't hardcode sensitive data like API keys, access tokens, or credentials into JS code.
+
+-> Always minify and obfuscate code
+Reduces loading time and secures against attackers since they will have to reverse engineer it.
