@@ -1,0 +1,69 @@
+>What is Burp Suit?<
+
+Is a comprehensive solution to conduct web application Pen Testing.
+Industry Standard for web and mobile apps including API's
+
+It captures and allows manipulation of HTTP/HTTPS traffic between a browser and a web server.
+
+>Features of Burp suit community<
+
+Proxy: Allows interception and modification of requests while interacting with web apps.
+Repeater: Allows capturing, modify, and resend the same request multiple times. Useful when crafting payloads through trial and error (SQL Injection) or testing functionalities of an endpoint for vulnerabilities.
+Intruder: Intruder allows to spray endpoints with requests (limited in burp community version). Used for bruteforce or fuzzing endpoints.
+Decoder: Data transformation. Decodes captured info or encodes payloads before sending them.
+Comparer: Allows for data comparison (byte level or word level)
+Sequencer: Used to access the randomness of tokens ( Check if tokens are indeed generated randomly) if they are not we can exploit that.
+
+>Burp Suit Dashboard<
+
+Tasks -> Allows us to make burp suit perform background tasks  while we use the application
+Event Log -> Provides info about the actions done by Burp Suit.
+Issue Activity -> (Only on professional) Displays vulnerabilities identified by the automated scanner.
+Advisory -> Provides detailed information about identified vulnerabilities, including references and remediations.
+
+>Burp Suit Proxy<
+
+Intercept - > Used to intercept requests so we can forward them, dropping, edit, send to other burp modules.
+Capture and log -> Burp suit captures and logs even with interception off , useful for later analisys.
+WebSocket support - Captures and logs websocket communication.
+
+
+Notable features:
+Response interception -> it does no intercept responses unless requested to do so under certain criteria.
+Match and Replace -> Enables use of regular expressions (regex) to modify incoming and outgoing requests. Allows for dynamic changes like modify the user agent or manipulate cookies.
+
+>Configure browser to redirect traffic to Burp Suit<
+
+in order to use Burp suit we need to configure our local browser to redirect traffic to burp suit
+In firefox we use an extension called FoxyProxy for this
+To configure proxyfoxy we need to add the follow details:
+
+    Title: Burp (or any preferred name)
+    Proxy IP: 127.0.0.1
+    Port: 8080
+
+>Target Tab<
+
+Site map: Allows us to map out a web application that we are targeting in a tree structure. Usefull to map API's too since it will also capture API's endpoints.
+
+Issue Definitions: Provides an extensive list of web vulnerabilities. Helpful in reports and describing vulnerabilities.
+
+Scope Settings: It enables us to include or exclude specific domains/IPs. Good to avoid capturing unnecessary traffic.
+
+>Burp Browser<
+
+To run Burps browser on Linux we need to run it as a low-privilege account (Not Root) to avoid encountering an error. (Sandbox Environment)
+
+>Scoping and Targeting<
+
+Scoping is the act of capturing only the traffic we are interest in.
+We can do this on the target tab -> right click on our target from the list and select ADD TO SCOPE.
+To active the above scope setting in the proxy module we need to go to Proxy settings and Select in Request Interception Rules and Response interception rules the option AND URL IS IN TARGET SCOPE.
+
+>Proxying HTTPS<
+
+We may encounter an error when navigating to a website protected by TLS because the browser does not trust BURP suit certificate.
+To bypass this we need to add PortSwigger CA certificate to the list of our trusted authorities.
+
+Website to download certificate: http://burp/cert
+
