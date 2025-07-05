@@ -1,0 +1,178 @@
+>Broken Access Control<
+
+A regular website visitor shouldn't have access to protected pages.
+Can lead to:
+Be able to see sensitive information from other users
+Access unauthorized functionality
+
+Broken access controls allows attacker to bypass authorization.
+
+>Broken Access Control ( IDOR Challenge)<
+
+IDOR -> Insecure Direct Object Reference -> This refers to a vulnerability where one can access resouces that we shouldn't see.
+It occurs when the programmer exposes a Direct Object Reference ( https://test.com/account?id=111111  - The ID here is 111111)
+
+The big problem here is that someone may be able to change the id to something else like 132222 and if the website is not correctly configured then he would access other person account information.
+The web app shall check if the logged in user has access to that new account ID object and only show if it does have the authorization.
+
+>Cryptographic Failures<
+
+Its a vulnerability from the misuse or lack of use of cryptographic algorithms to protect sensitive information.
+
+Encrypting data in transit - When data is encrypted in communications from the server to the client and vice versa
+
+Encrypting data at rest - When the data is encrypted in the servers it is stored.
+
+>Cryptographic Failures (DATABASES)<
+
+Databases can be running in Servers with services like MySQL or MariaDB or they can be stored as files called "Flat-File"
+If a flat-file is on the root directory and accessible to the user we can download it and query it in our own machine. The data would be exposed.
+
+The most common format for a flat-file database is SQLite database.
+These can be interacted with most programming languages and have a dedicated CLI client to query them.
+The client to query SQLite is called sqlite3
+
+If we manage to download the database file here are the commands we need to interact with it:
+
+To access it: sqlite3 <database-name>
+
+Once we access it when can now run other commands:
+
+See tables: .tables
+
+We now know the name of the tables
+To find what a column inside a table means we run: PRAGMA table_info(<nameoftable>)
+
+Now we know the column names
+
+To dump all the table info now we can run: SELECT * FROM <nameoftable>;
+
+>Injection<
+
+Injection attacks happen when applications understand user inputs has commands or parameters.
+
+There are 2 common types:
+SQL injection: User controlled input is passed to SQL queries. Lets an attacker access modify delete information on a database.
+
+Command Injection: Happens when user input is passed to system commands. An attacker can execute system commands in app servers.
+
+To prevent we need to ensure user inputs are not interpreted as queries or commands.
+
+2 ways of doing this: input is compared to a safe list of inputs or characters and if it is not marked as safe it is not processed
+Using an allow list: 
+
+Stripping input: If the input contains dangerous characters these are stripped before processing.
+
+>Command Injection<
+
+It occurs when server-sided code (PhP for example) makes a call to a function that interacts with the servers console. This allows the attacker to run operating systems commands to try to gain a foothold on the server
+
+>Exploit Command Injection<
+
+Once we know how a function interacts with the console we can exploit it by using inline commands (Run commands within commands).
+To run inline commands we only need to enclose them in this format: $(your_command_here). Inline commands are always run first.
+
+
+>Insecure Design<
+Refers to vulnerabilities that relate to how an application was build/designed that because they didn't had proper threat modelling they have features or work in a way that a bad actor may be able to take advantage of.
+Instagram 250 tries per IP on OTP codes could be exploited by using multiple IP's to brute force the login.
+
+>Server Misconfiguration<
+
+These can happen when security in not properly configured but was not.
+
+Security misconfigurations include:
+
+    Poorly configured permissions on cloud services, like S3 buckets.
+    Having unnecessary features enabled, like services, pages, accounts or privileges.
+    Default accounts with unchanged passwords.
+    Error messages that are overly detailed and allow attackers to find out more about the system.
+    Not using HTTP security headers.
+
+These vulnerabilities can lead to others like default credentials, access to sensitive data, XML External Entities (XXE) or command injection on admin pages.
+
+Debugging Interfaces
+If a developer forgets to deactivate one an attacker can use it to exploit a web app.
+
+>Vulnerable and Outdated components<
+If a company is using software that has not been updated for a long time there is a big possibility that it is vulnerable with known exploits.
+
+If we find a software running a outdated version we can go on exploit DB and run the exploit for that version to take advantage of the vulnerability on that software.
+
+>Identification and Authentication Failures<
+
+Servers are stateless so they need to attribute session cookies to know who the information is being sent is from. These cookies are create upon a successful authentication (login)
+
+Common flaws in authentication:
+
+Brute force attacks
+
+Use of Weak Credentials
+
+Weak Session Cookies - If a session cookie contains predictable values, attackers can set their own session cookies and access accounts.
+
+Mitigation:
+Strong password policy
+Automatic lockout after X attempts.
+Implement multi-factor Authentication (Turns the task of exploiting an authentication harder)
+
+A registration exploit is try to re-register a user adding a space to the name of an account that already exists.
+
+>Software and Data integrity Failures<
+
+To check for a files integrity we often check the file hash and compare it to the original file hash. If they match they are the same and no altered
+
+To calculate different hashs in Linux we can use the commands md5sum sha1sum sha256sum
+
+If no integrity checks are made an attacker can modify software and then this can be executed by a user unknowingly
+
+>Software Integrity Failures<
+
+When a website calls a library that is hosted in a 3rd party website for example it has no way to know if this third party server was hacked and malicious code was injected.
+This is a software integrity failure. A way to circumvent this would be have the browser check the downloaded content against a hash for that same content making sure it was not altered. ( This is called Subresource Integrity SRI)
+
+The correct way to implement this would be to use a request for a library to be downloaded and also provide a hardcoded hash that it needs to be checked against. this way if the library is altered in some way the browser will not run it.
+
+https://www.srihash.org/ to generate hashes for any library
+
+>Data integrity<
+
+When we log to a web app the app usually issues the user a session token. The session token is repeated in every subsequent request so the app knows who we are (servers are stateless). These tokens are usually assigned by cookies
+Cookies are key-value pairs that are stored on the users browser.
+
+To avoid users changing cookies and having access to other users accounts a safety mechanism was put in place
+One such implementation is JSON web Tokens (JWT)
+The idea of JWT is that an webapp is able to issue tokens to their users with the certainty they wont be able to alter the key-value pairs.
+
+JWT structure - HEADER - PAYLOAD - SIGNATURE
+
+Header - Contains Metadata and indicates this is a JWT and the algorithm is HS256.
+Payload - Contains the key-value pairs with the data the web app wants the client to store.
+Signature - Similar to a hash, is used to verify payload integrity. If the Payload is changed then the webapp will compare the signature and know it was changed. Unlike a simple hash the signature uses a secret key that only the server has access so that even if we change the signature we aren't able to generate the signature because we don't have the key.
+
+The 3 parts of the JWT is encoded in base64
+
+JWT and the none Algorithm
+
+A way hackers found to bypass the JWT in some libraries was by changing the algorithm to none on the header of the JWT and then change the username for the desired username on the payload (like admin for example, and finaly removing the signature altogheter since there would be no algorithm check they would still have to keep the "." that separates payload from signature.
+
+>Secure logging and Monitoring failures<
+
+Logs are extremely important so that we know what happened in case there was an attack. This way we can have an idea of the extent of the attack and where it came from
+
+Logs shall be kept safe and have frequent backups.
+Regulatory damage: If companies do not have logging in place when dealing with clients sensitive information they can be liable to fines.
+Risk of further attacks: Without logs its impossible to know exactly how the attacker gained a foothold or what he tried in order to gain access, so patching the system will be much harder
+the attacker can even go undetected.
+
+>Server-side Request Forgery (SSRF)<
+
+The vulnerability happens when an attackers makes a web application send requests on their behalf, while having control of the request itself. 
+These vulnerabilities can show up when the web app uses third party services.
+
+ SSRF can be used for:
+
+    Enumerate internal networks, including IP addresses and ports.
+    Abuse trust relationships between servers and gain access to otherwise restricted services.
+    Interact with some non-HTTP services to get remote code execution (RCE).
+
