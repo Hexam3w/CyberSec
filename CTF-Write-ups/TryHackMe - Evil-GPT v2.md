@@ -67,11 +67,11 @@ The AI explained that it doesn’t “see” in the human sense but, after searc
 
 ### 🖼️ 1. Initial AI Interaction
 
-![Initial interaction with Evil-GPT](images/evil-gpt-v2/1.png)
+![Initial interaction with Evil-GPT](Images/Evil-GPT-v2/1.png)
 
 ### 🖼️ 2. Flag Extraction Success
 
-![Flag found in AI response](images/evil-gpt-v2/2.png)
+![Flag found in AI response](Images/Evil-GPT-v2/2.png)
 
 ---
 
