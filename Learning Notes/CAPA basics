@@ -1,0 +1,82 @@
+>CAPA<
+CAPA is a malware analisys tool.
+It conducts static analisys -> examining malware without executing it.
+
+Helpful commands:
+-h Help
+-v -vv Verbose
+
+To read an output of Capa analisys we use the powershell command: Get-Content <filename>
+
+>Dissecting CAPA Results<
+
+First block
+MD5 Sha1 Sha256 - Cryptographic Algorithms
+Analysis - Type of analysis performed (static in this case)
+OS - Reveals the OS that the identified capabilities apply
+Arch - Reveals if we are dealing with x86 binary file
+Path - where the analysed file is located
+
+Second Block
+ATT&CK tatic - what is present and identified
+ATT&CK Technique + sub technic identifier - Inside Each tatics what techniques where used in the file + txxxx identifier
+
+This second block uses the MITRE ATT&CK Framework
+
+Third Block
+MAEC - Malware Attribute Enumeration and Characterization
+
+Standardised language used to describe malware.
+
+The most common values are Launcher (Triggers specific actions) and Downloader (Downloads and executes other files)
+
+Some of launcher behaviours can be:
+
+    Dropping additional payloads
+    Activating persistence mechanisms
+    Connecting to command-and-control (C2) servers
+    Executing specific functions
+
+Some Downloader behaviours can be:
+
+    Fetching additional payloads or resources from the internet
+    pulling in updates
+    executing secondary stages
+    retrieving configuration files
+
+Forth Block
+Malware Behaviour Catalogue (MBC)
+Serves as a catalog to give us an idea of the malware objectives and behaviours.
+
+Usual format is: OBJECTIVE::Behavior::Method[Identifier]
+
+Objective- outlines the malware Objective
+Micro-Objectives - Objectives the malware has that are not necessarily malicious but can be abused later. (Memory, Process)
+
+Behaviours- Explain what the malware does to achieve the objective.
+Micro-Behaviour - These are what the tasks the malware does to achieve Micro-Objectives that are not necessarily harmfull but will help the malware later somehow (Allocating memory, checking strings, decoding, terminating process.)
+
+
+Methods - They are tied to behaviours, basicly they outline how that specific behaviour is executed. (behaviour: Encode data method: XOR)
+
+Fifth Block
+
+Format: Capability(Rule Name)::TLN(Top-Level Namespace)/Namespace
+
+
+Capability - States the capabilities of the malware (Its also the name of the rule inside the namespace)
+Namespace - Groups Items with the name purpose in Top Level namespaces and then Namespaces
+
+
+>Verbose<
+
+To know what trigged a rule inside the malware we can increase the verbose with the command -v or -vv.
+
+If we do -vv we may get more than 3000 lines of code. Using a command line to read this is not pratical
+
+We can convert a file to JSON so we can read it in a more simple way
+To do this we do capa.bin -j -vv .\FILENAME.bin > FILENAME_vv.json
+
+Next we need to upload the JSON file to CAPA web Explorer at https://mandiant.github.io/capa/explorer/#/ or the offline version
+
+On the website we can click on the category and check what was found in the malware that the rule.yml had present.
