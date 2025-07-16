@@ -1,0 +1,115 @@
+>FlareVM Forensics, Logic Analysis, and Reverse Engineering<
+
+Collection of tools used by reverse engineers, malware analysts, incident responders, forensic investigators, and penetration testers
+
+
+>Tools<
+
+Reverse Engineering & Debugging
+
+Reverse engineering -> Solving puzzles backwards, We take a finished product and try to understand it
+Debbugging - Identifying errors and why they happen so we can correct the code.
+
+    Ghidra - NSA-developed open-source reverse engineering suite.
+    x64dbg - Open-source debugger for binaries in x64 and x32 formats.
+    OllyDbg - Debugger for reverse engineering at the assembly level.
+    Radare2 - A sophisticated open-source platform for reverse engineering.
+    Binary Ninja - A tool for disassembling and decompiling binaries.
+    PEiD - Packer, cryptor, and compiler detection tool.
+
+Disassemblers & Decompilers
+
+Crucial for malware analisys, they break the malware into a more understandable format.
+
+
+    CFF Explorer - A PE editor designed to analyze and edit Portable Executable (PE) files.
+    Hopper Disassembler - A Debugger, disassembler, and decompiler.
+    RetDec - Open-source decompiler for machine code.
+
+Static & Dynamic Analysis
+
+Static -> inspecting without execution
+Dynamic -> Observe behaviour has it runs
+
+
+    Process Hacker - Sophisticated memory editor and process watcher.
+    PEview - A portable executable (PE) file viewer for analysis.
+    Dependency Walker - A tool for displaying an executable’s DLL dependencies.
+    DIE (Detect It Easy) - A packer, compiler, and cryptor detection tool.
+
+Forensics & Incident Response
+
+Collection, analysis, and preservation of digital evidence and detection, containment, eradication, and recovery from cyberattacks
+
+
+    Volatility - RAM dump analysis framework for memory forensics.
+    Rekall - Framework for memory forensics in incident response.
+    FTK Imager - Disc image acquisition and analysis tools for forensic use.
+
+Network Analysis
+
+Analyse networks, uncover patterns, optimise performance
+
+
+    Wireshark - Network protocol analyzer for traffic recording and examination.
+    Nmap - A vulnerability detection and network mapping tool.
+    Netcat - Read and write data across network connections with this helpful tool.
+
+File Analysis
+
+Examine files for security threats and ensure proper file permissions
+
+
+    FileInsight - A program for looking through and editing binary files.
+    Hex Fiend - Hex editor that is light and quick.
+    HxD - Binary file viewing and editing with a hex editor.
+
+Scripting & Automation
+
+Automate repetitive tasks making them more efficient and reduce human error
+
+
+    Python - Mainly automation-focused on Python modules and tools.
+    PowerShell Empire - Framework for PowerShell post-exploitation.
+
+Sysinternals Suite
+
+Collection of tools to manage troubleshoot and diagnose windows systems
+
+
+    Autoruns - Shows what executables are configured to run during system boot-up.
+    Process Explorer - Provides information about running processes.
+    Process Monitor -Monitors and logs real-time process/thread activity.
+
+
+
+>Commonly used tools in investigation<
+
+Procmon (Process Monitor)
+
+This tool records issues with our systems apps.
+Its helpful to track system activity related to malware research, troubleshooting, and forensic investigations.
+
+Procexp ( Process Explorer )
+
+This program provide a deep dive in what each process is doing. it can tells us what user is running it and what files it is accessing.
+
+HxD
+
+Hex Editor -> used for investigation, data recovery, debugging, manipulation of binary data.
+
+CFF Explorer
+
+Generate file hashs for integrity verification authentication and validation
+
+Wireshark
+
+Network Traffic analisys tool. Use to hunt down dubious connections, examine protocols, and spot possible assaults or data exfiltration
+
+PEStudio
+
+Static analisys tool for studying executable files without running them.
+
+FLOSS
+
+Static analisys program - Extracts and de-obfuscates all strings from malware programs.
