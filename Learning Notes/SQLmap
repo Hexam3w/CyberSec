@@ -1,0 +1,12 @@
+<SQLmap>
+
+SQLmap is an automated tool created to detect and exploit SQL injection vulnerabilities in web apps.
+
+SQLmap has a wizard that allows us to get guided instead of having to insert all the flags manually.
+To use the wizard we use the command: sqlmap --wizard
+
+--dbs -> extract DB names
+Databasename --tables - Extract table names
+
+if the application uses a get parameters in the url we can test that url in SQLmap. example.com/search?dog=1 (dog=1 is the get parameter)
+
