@@ -1,0 +1,17 @@
+>CyberChef<
+
+Is like a swiss army tool that is used to encrypt decrypt and encode/decode.
+
+It has 4 main areas:
+Operations- where we can select what operations we want to add to the recipe
+Recipe - Where we tune the operations to suit our needs
+Input - This is where we input the data we want to work with
+Output - Where the data is outputted.
+
+Cyber Cheft Categories
+
+Extractors- Extract IP Addresses, URLs, Email Addresses
+
+Date/time -Converts Unix Timestamps to a date/time string and vice-versa
+
+Data Format -Converts data from and to Base64 Base85 Base58 Base62 and URL Decode to its raw format.
