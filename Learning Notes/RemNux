@@ -1,0 +1,101 @@
+>RemNUX VM<
+
+A specialised VM Linux Distro 
+
+>File Analisys<
+
+oledump.py -> static analisys
+Used to examine OLE2 files.
+
+To see the contents of a file we can use: oledump.py <filename>
+
+Once we have the data streams numbered by Ax (x is a number) we should look for letter in front of them ( for example an M represents a possible macro)
+
+To check a specific stream we run the command: oledump.py <filename> -s <stream number>
+
+The results will be in hex dump format.
+To make it more readable we can run the previous command with an additional parameter
+
+oledump.py <filename> -s <stream number> --vbadecompress
+
+
+
+>INetSim: Internet Services Simulation Suite<
+
+A tool inside Remnux to make Dynamic analisys
+
+To start using this tool first we need to configure it
+
+We need to change the value of our IP in its configuration file
+Command: sudo nano /etc/inetsim/inetsim.conf
+
+Inside we want to change the dns_default_ip to our machines IP address and remove the #
+
+we can save the file and run the following command to check if the change took place:
+cat /etc/inetsim/inetsim.conf | grep dns_default_ip
+
+now we can run Inetsim: sudo inetsim
+
+Now that we are running Inetsim we can go to a different machine and access the website with the ip of the machine we setup inetsim.
+
+If we are able to access the website we can now simulate malware behaviour and Inetsim will register everything.
+
+
+>Memory Investigation: Evidence Preprocessing<
+
+One of the most common practices in digital forensics is preprocessing -> running tools and saving results in txt and JSON
+
+A very used tool is Volatility
+
+To run volatility we want to use sudo su ( so we can be logged in a root and have full privileges)
+
+After this the command to run volatility is : vol3 -f <filename> <Plugin>
+
+Pstree plugin
+windows.pstree.PsTree
+This plugin lists processes in a tree based on their parent process ID.
+
+PsList
+windows.pslist.PsList
+This plugin is used to list all currently active processes in the machine.
+
+CmdLine
+windows.cmdline.CmdLine
+This plugin is used to list process command line arguments.
+
+FileScan
+windows.filescan.FileScan
+This plugin scans for file objects in a particular Windows memory image.
+
+DllList
+windows.dlllist.DllList
+This plugin lists the loaded modules in a particular Windows memory image.
+
+PsScan
+windows.psscan.PsScan
+This plugin is used to scan for processes present in a particular Windows memory image.
+
+Malfind
+windows.malfind.Malfind
+This plugin is used to lists process memory ranges that potentially contain injected code
+
+
+How to process in bulk?
+Use the following command:
+for plugin in windows.malfind.Malfind windows.psscan.PsScan windows.pstree.PsTree windows.pslist.PsList windows.cmdline.CmdLine windows.filescan.FileScan windows.dlllist.DllList; do vol3 -q -f <FILENAME.mem> $plugin > <filename>.$plugin.txt; done
+
+Explanation:
+$plugin -> variable with value of each volatility plugin
+-q - quiet mode , does not show progress in the terminal
+-f - Read from memory captured
+plugin > wcry.plugin.done - means run volatility with the plugins and output it to a file with <filename> at the beginning of the text, followed by the name of the plugins and with an extension of .txt. Repeat until the value of variable $plugin is used.
+
+After running the scan we will not see any console output but we will have the .txt results in the directory we ran the command.
+
+We can also preprocess using Linux Strings Utility to get ASCII, 16-bit little-endian, and 16-bit big-endian strings.
+
+To do this we can run the commands:
+
+strings <Filename>.mem > <filename>.strings.ascii.txt
+strings -e l <Filename>.mem > <Filename>.strings.unicode_little_endian.txt
+strings -e b <Filename>.mem > <Filename>.strings.unicode_big_endian.txt
