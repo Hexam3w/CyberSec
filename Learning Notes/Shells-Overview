@@ -1,0 +1,57 @@
+>Shell<
+
+A shell is a software that allows users to interact with a OS ( It can have a GUI but is usually a CLI)
+
+Some activities an attacker can do with a shell
+
+Remote system control - Execute commands on the system remotely
+Privilege escalation - Attackers can explore ways to escalate privileges to have more access to the system via the shell
+Data exfiltration - Once attackers can execute commands they can start to read write and copy/download files.
+Persistence and Maitenance Access - Once attackers have access and enough privileges they can try to implements backdoors or create new users to have persistent access to the system.
+Post-Exploitation Activities - Deploy malware, create hidden accounts, Delete information
+Access other systems in the network - Once a shell is obtained an attacker going can be to hop throught the network to a different target using the shell as a pivot (Pivoting)
+
+>Reverse Shell<
+
+AKA connect back shell
+
+The connection is initiate from the target machine to the attacker machine (Helps avoid detection)
+
+How they work:
+
+example using netcat
+
+We setup a listener using netcat: nc -lvnp 443
+
+Note: Always good to use a port that other services use to blend traffic and make it look legit
+
+Once we have our listener setup we need to execute our payload via the vulnerability we exploited previously
+
+Once the payload is executed the attacker receives the shell.
+
+>Bind Shell<
+
+Will bind to a port on the infected machine and wait for a connection.
+
+This method is used when the compromised target does not allow outgoing connections. Less popular cause it stays active listening for connections so its easier to detect.
+
+>Shell Listeners<
+
+Rlwrap - it provides the use of editing keyboard and history. We can wrap netcat with rlwrap so we can have access to more features.
+example: rlwrap nc -lvnp 443
+
+Ncat - Improved version of netcat. has extra features like encryption (SSL)
+Example of listening for reverse shell with SSL: ncat --ssl -lvnp 4444
+
+Socat - allows to create a socket connection between 2 data sources.
+Its a great tool and great for more complex connections.
+It supports a lot more socket connections besides TCP and UDP
+
+>Shell Payloads<
+A shell payload is a command or a script that creates a shell to and incoming connection or sends a connection of a shell.
+
+>Web Shell<
+A script written in a language supported by the compromised web server that executes commands throught the web server itself.
+Usually is a file containing the code that executes commands and handles files. It can be hidden in a application or service.
+
+
